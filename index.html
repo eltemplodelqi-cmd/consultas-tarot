@@ -17,39 +17,26 @@
       font-family: Arial, sans-serif;
       color: #333;
       line-height: 1.6;
-      overflow-x: hidden;
       min-height: 100vh;
       position: relative;
-    }
-
-    /* Fondo místico con partículas */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      padding: 20px;
+      overflow-x: hidden;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Amanecer espiritual */
-      z-index: -2;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: moveStars 60s linear infinite;
-      z-index: -1;
+    /* Partículas flotantes */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 30s linear infinite;
+      pointer-events: none;
     }
 
-    @keyframes moveStars {
-      0% { background-position: 0 0; }
-      100% { background-position: 500px 500px; }
+    @keyframes float {
+      0% { transform: translateY(0) translateX(0); opacity: 0.6; }
+      50% { transform: translateY(-50vh) translateX(50vw); opacity: 0.3; }
+      100% { transform: translateY(-100vh) translateX(100vw); opacity: 0.6; }
     }
 
     h1, h2 {
@@ -199,8 +186,24 @@
     <p>© 2026 Consultas de Tarot - Todos los derechos reservados</p>
   </footer>
 
+  <!-- Partículas generadas dinámicamente -->
+  <script>
+    const colors = ["#fff", "#ffe4e1", "#fdf5e6", "#f0f8ff"];
+    for(let i=0; i<50; i++){
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      const size = Math.random() * 5 + 3;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.background = colors[Math.floor(Math.random()*colors.length)];
+      particle.style.top = `${Math.random()*100}vh`;
+      particle.style.left = `${Math.random()*100}vw`;
+      particle.style.animationDuration = `${20 + Math.random()*20}s`;
+      document.body.appendChild(particle);
+    }
+  </script>
+
 </body>
 </html>
-
 
 
