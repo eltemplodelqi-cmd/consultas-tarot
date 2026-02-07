@@ -3,26 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consultas de tarot privadas y personalizadas en Templo del Qi. Amor, trabajo y guía espiritual con Alejandra.">
   <title>Consultas de Tarot - Templo del Qi</title>
   <style>
-    /* Fondo místico con imagen */
+    /* Estilos generales */
     body {
       font-family: Arial, sans-serif;
-      background-image: url('fondo-mistico.jpg'); /* tu imagen de fondo */
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      color: #fff;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Amanecer espiritual */
+      color: #333;
       margin: 0;
       padding: 20px;
       line-height: 1.6;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
     }
 
     h1, h2 {
-      color: #FFD700;
+      color: #8B2D6C;
       text-align: center;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      margin-top: 20px;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 10px auto;
+      text-align: justify;
+    }
+
+    ul {
+      max-width: 800px;
+      margin: 10px auto 20px auto;
+      padding-left: 20px;
+      text-align: left;
     }
 
     .imagen-tarot {
@@ -30,48 +40,37 @@
       border-radius: 10px;
       display: block;
       margin: 20px auto;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      loading: lazy;
     }
 
-    p, ul {
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: center;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    /* Botones con transparencia */
+    /* Botones */
     .boton {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       padding: 12px 20px;
       border-radius: 8px;
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
       margin: 10px;
-      transition: transform 0.2s, background 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .boton:hover {
       transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
 
     .whatsapp {
-      background-color: rgba(37, 211, 102, 0.85);
+      background-color: #25D366;
       color: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .instagram {
-      background-color: rgba(225, 48, 108, 0.85);
+      background-color: #E1306C;
       color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
 
     .instagram svg {
@@ -81,12 +80,11 @@
     /* Footer */
     footer {
       margin-top: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-top: 1px solid #ccc;
       padding-top: 10px;
       font-size: 14px;
+      color: #666;
       text-align: center;
-      color: #fff;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     }
 
     /* Contenedor para botones centralizados */
@@ -95,85 +93,42 @@
       margin: 20px 0;
     }
 
-    /* Fondo de secciones para mejorar legibilidad */
-    section {
-      background-color: rgba(0,0,0,0.4);
-      border-radius: 10px;
-      padding: 15px;
-      margin: 15px auto;
-      max-width: 850px;
+    /* Responsive */
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      h1, h2 {
+        font-size: 1.5em;
+      }
+      .boton {
+        font-size: 14px;
+        padding: 10px 16px;
+      }
     }
-
   </style>
 </head>
 <body>
 
   <h1>Bienvenido al Templo del Qi</h1>
 
-  <section>
-    <p>Soy Alejandra, tarotista intuitiva, y te ayudo a encontrar claridad en el amor, el trabajo y las decisiones importantes de tu vida. Mis consultas son privadas, honestas y enfocadas en darte guía real.</p>
-    <img src="tarot.jpg" alt="Tarot" class="imagen-tarot">
+  <p>Soy Alejandra, tarotista intuitiva, y te ayudo a encontrar claridad en el amor, el trabajo y las decisiones importantes de tu vida. Mis consultas son privadas, honestas y enfocadas en darte guía real.</p>
 
-    <!-- Contenedor de botones -->
-    <div class="botones">
-      <!-- Botón WhatsApp con mensaje automático -->
-      <a href="https://wa.me/673790307?text=Bienvenid%40%20al%20Templo%20del%20Qi%2C%20quieres%20reservar%20tu%20cita%3F" target="_blank" class="boton whatsapp">
-        💬 Reserva tu consulta por WhatsApp
-      </a>
+  <img src="tarot.jpg" alt="Cartas de tarot" class="imagen-tarot" loading="lazy">
 
-      <!-- Botón Instagram -->
-      <a href="https://www.instagram.com/eltemplodelqi/" target="_blank" class="boton instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.495 5.783 2.224 7.149 2.163 8.415 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.772.13 4.642.384 3.68 1.347c-.963.963-1.217 2.093-1.275 3.373C2.013 5.668 2 6.077 2 12s.013 6.332.072 7.612c.058 1.28.312 2.41 1.275 3.373.963.963 2.093 1.217 3.373 1.275 1.28.058 1.689.072 7.612.072s6.332-.013 7.612-.072c1.28-.058 2.41-.312 3.373-1.275.963-.963 1.217-2.093 1.275-3.373.058-1.28.072-1.689.072-7.612s-.013-6.332-.072-7.612c-.058-1.28-.312-2.41-1.275-3.373C19.072.384 17.942.13 16.662.072 15.382.013 14.973 0 12 0z"/>
-          <path d="M12 5.838A6.162 6.162 0 1 0 18.162 12 6.169 6.169 0 0 0 12 5.838zm0 10.162A3.998 3.998 0 1 1 16 12a3.999 3.999 0 0 1-4 4z"/>
-          <circle cx="18.406" cy="5.594" r="1.44"/>
-        </svg>
-        Instagram
-      </a>
-    </div>
-  </section>
+  <!-- Contenedor de botones -->
+  <div class="botones">
+    <!-- Botón WhatsApp con mensaje automático -->
+    <a href="https://wa.me/673790307?text=Bienvenid%40%20al%20Templo%20del%20Qi%2C%20quieres%20reservar%20tu%20cita%3F" 
+       target="_blank" rel="noopener noreferrer" class="boton whatsapp">
+      💬 Reserva tu consulta por WhatsApp
+    </a>
 
-  <section>
-    <h2>Servicios</h2>
-    <ul>
-      <li>🔮 Consulta general</li>
-      <li>❤️ Consulta de amor y relaciones</li>
-      <li>💼 Consulta laboral y económica</li>
-      <li>🌙 Sesiones privadas online</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Confianza y confidencialidad</h2>
-    <p>Todas las consultas son completamente privadas y confidenciales. Mi trabajo se basa en la orientación espiritual y el respeto absoluto por cada persona. El tarot es una herramienta de guía, no de imposición.</p>
-  </section>
-
-  <section>
-    <h2>Aviso legal</h2>
-    <p>Las consultas de tarot ofrecidas en este sitio son exclusivamente orientativas y de entretenimiento. No sustituyen asesoramiento médico, legal, financiero o psicológico profesional. Las decisiones personales son responsabilidad de cada consultante.</p>
-  </section>
-
-  <section>
-    <h2>Horarios de atención</h2>
-    <p>Atiendo de lunes a domingo.<br>🕰 Horario: concertar cita</p>
-  </section>
-
-  <section>
-    <h2>Precios</h2>
-    <ul>
-      <li>🔮 Consulta general (30 min): 25 €</li>
-      <li>❤️ Consulta de amor: 30 €</li>
-      <li>💼 Consulta laboral y económica: 30 €</li>
-      <li>🌙 Sesión completa personalizada: 50 €</li>
-    </ul>
-  </section>
-
-  <footer>
-    <p>© 2026 Consultas de Tarot - Todos los derechos reservados</p>
-  </footer>
-
-</body>
-</html>
+    <!-- Botón Instagram -->
+    <a href="https://www.instagram.com/eltemplodelqi/" 
+       target="_blank" rel="noopener noreferrer" class="boton instagram">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.495 5.783 2.224 7.149 2.163 8.415 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.772.13 4.642.384 3.68 1.347c-.963.963-1.217 2.093-1.275 3.373C2.013 5.668 2 6.077 2 1
 
 
 
