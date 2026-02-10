@@ -1,207 +1,239 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Consultas de tarot privadas y personalizadas en Templo del Qi. Amor, trabajo y guía espiritual con Alejandra.">
-  <title>Consultas de Tarot - Templo del Qi</title>
-  <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>Mi Tarot Online</title>
+<meta name="description" content="Consulta de tarot online, reserva tu tirada y recibe guía espiritual.">
 
-    body {
-      font-family: Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      position: relative;
-      padding: 20px;
-      overflow-x: hidden;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Amanecer espiritual */
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 
-    /* Partículas flotantes */
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: float 30s linear infinite;
-      pointer-events: none;
-    }
+<style>
+/* --- Tirada interactiva CSS --- */
+#tarot-interactivo {
+  text-align: center;
+  margin: 40px 0;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.6; }
-      50% { transform: translateY(-50vh) translateX(50vw); opacity: 0.3; }
-      100% { transform: translateY(-100vh) translateX(100vw); opacity: 0.6; }
-    }
+.mazo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
 
-    h1, h2 {
-      color: #8B2D6C;
-      text-align: center;
-      margin-top: 20px;
-    }
+.carta {
+  width: 80px;
+  height: 120px;
+  perspective: 1000px;
+  cursor: pointer;
+}
 
-    p {
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: justify;
-    }
+.carta-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
 
-    ul {
-      max-width: 800px;
-      margin: 10px auto 20px auto;
-      padding-left: 20px;
-      text-align: left;
-    }
+.carta.flipped .carta-inner {
+  transform: rotateY(180deg);
+}
 
-    .imagen-tarot {
-      max-width: 100%;
-      border-radius: 10px;
-      display: block;
-      margin: 20px auto;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      loading: lazy;
-    }
+.carta-front, .carta-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
 
-    /* Botones */
-    .boton {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: bold;
-      text-decoration: none;
-      margin: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+.carta-front {
+  background: #ccc url('https://i.imgur.com/3bXH9bM.png') center/cover no-repeat;
+}
 
-    .boton:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+.carta-back {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transform: rotateY(180deg);
+  font-size: 12px;
+  padding: 5px;
+}
 
-    .whatsapp {
-      background-color: #25D366;
-      color: white;
-    }
+.seleccionadas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  min-height: 130px;
+}
 
-    .instagram {
-      background-color: #E1306C;
-      color: white;
-    }
+button.tirada {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #6b4226;
+  color: white;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
 
-    .instagram svg {
-      margin-right: 8px;
-    }
+button.tirada:hover {
+  background-color: #854e2d;
+}
 
-    /* Footer */
-    footer {
-      margin-top: 40px;
-      border-top: 1px solid #ccc;
-      padding-top: 10px;
-      font-size: 14px;
-      color: #666;
-      text-align: center;
-    }
-
-    /* Contenedor para botones centralizados */
-    .botones {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      body {
-        padding: 10px;
-      }
-      h1, h2 {
-        font-size: 1.5em;
-      }
-      .boton {
-        font-size: 14px;
-        padding: 10px 16px;
-      }
-    }
-  </style>
+.significado {
+  margin-top: 20px;
+  font-weight: bold;
+  white-space: pre-wrap;
+}
+</style>
 </head>
 <body>
 
-  <h1>Bienvenido al Templo del Qi</h1>
+<header>
+  <h1>🔮 Consultas de Tarot con [Tu Nombre]</h1>
+  <p>Descubre tu camino y recibe guía espiritual personalizada</p>
+  <a href="https://wa.me/673790307" class="boton">💬 Reservar ahora por WhatsApp</a>
+</header>
 
-  <p>Soy Alejandra, tarotista intuitiva, y te ayudo a encontrar claridad en el amor, el trabajo y las decisiones importantes de tu vida. Mis consultas son privadas, honestas y enfocadas en darte guía real.</p>
+<section id="sobre-mi">
+  <h2>Sobre mí</h2>
+  <p>
+    Soy tarotista intuitiva y ayudo a encontrar claridad en el amor, 
+    trabajo y decisiones importantes de tu vida.
+  </p>
+  <img src="tarot.jpg" alt="Tarot" class="imagen-tarot">
+</section>
 
-  <img src="tarot.jpg" alt="Cartas de tarot" class="imagen-tarot" loading="lazy">
-
-  <!-- Contenedor de botones -->
-  <div class="botones">
-    <a href="https://wa.me/673790307?text=Hola%20Alejandra,%20quiero%20reservar%20mi%20consulta%20de%20tarot" 
-       target="_blank" rel="noopener noreferrer" class="boton whatsapp">
-      💬 Reserva tu consulta por WhatsApp
-    </a>
-
-    <a href="https://www.instagram.com/eltemplodelqi/" 
-       target="_blank" rel="noopener noreferrer" class="boton instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.495 5.783 2.224 7.149 2.163 8.415 2.105 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.013 7.052.072 5.772.13 4.642.384 3.68 1.347c-.963.963-1.217 2.093-1.275 3.373C2.013 5.668 2 6.077 2 12s.013 6.332.072 7.612c.058 1.28.312 2.41 1.275 3.373.963.963 2.093 1.217 3.373 1.275 1.28.058 1.689.072 7.612.072s6.332-.013 7.612-.072c1.28-.058 2.41-.312 3.373-1.275.963-.963 1.217-2.093 1.275-3.373.058-1.28.072-1.689.072-7.612s-.013-6.332-.072-7.612c-.058-1.28-.312-2.41-1.275-3.373C19.072.384 17.942.13 16.662.072 15.382.013 14.973 0 12 0z"/>
-        <path d="M12 5.838A6.162 6.162 0 1 0 18.162 12 6.169 6.169 0 0 0 12 5.838zm0 10.162A3.998 3.998 0 1 1 16 12a3.999 3.999 0 0 1-4 4z"/>
-        <circle cx="18.406" cy="5.594" r="1.44"/>
-      </svg>
-      Instagram
-    </a>
-  </div>
-
+<section id="servicios">
   <h2>Servicios</h2>
   <ul>
-    <li>🔮 Consulta general</li>
-    <li>❤️ Consulta de amor y relaciones</li>
+    <li>🔮 Consulta general (30 min)</li>
+    <li>❤️ Consulta de amor</li>
     <li>💼 Consulta laboral y económica</li>
-    <li>🌙 Sesiones privadas online</li>
+    <li>🌙 Sesión completa personalizada</li>
   </ul>
+</section>
 
-  <h2>Confianza y confidencialidad</h2>
-  <p>Todas las consultas son completamente privadas y confidenciales. Mi trabajo se basa en la orientación espiritual y el respeto absoluto por cada persona. El tarot es una herramienta de guía, no de imposición.</p>
+<!-- ======== Sección Tirada Interactiva ======== -->
+<section id="tarot-interactivo">
+  <h2>Tirada Interactiva de Tarot</h2>
+  <p>Haz clic en 3 cartas del mazo para tu tirada.</p>
 
-  <h2>Aviso legal</h2>
-  <p>Las consultas de tarot ofrecidas en este sitio son exclusivamente orientativas y de entretenimiento. No sustituyen asesoramiento médico, legal, financiero o psicológico profesional. Las decisiones personales son responsabilidad de cada consultante.</p>
+  <div class="mazo" id="mazo"></div>
 
+  <h3>Cartas Seleccionadas</h3>
+  <div class="seleccionadas" id="seleccionadas"></div>
+
+  <button class="tirada" onclick="mostrarSignificados()">Mostrar Significados</button>
+
+  <div class="significado" id="significado"></div>
+</section>
+
+<section id="horarios-precios">
   <h2>Horarios de atención</h2>
-  <p>Atiendo de lunes a domingo.<br>🕰 Horario: concertar cita</p>
+  <p>🕰 Lunes a sábado, 10:00 a 20:00 (cita previa)</p>
 
   <h2>Precios</h2>
   <ul>
-    <li>🔮 Consulta general (30 min): 25 €</li>
+    <li>🔮 Consulta general: 25 €</li>
     <li>❤️ Consulta de amor: 30 €</li>
-    <li>💼 Consulta laboral y económica: 30 €</li>
-    <li>🌙 Sesión completa personalizada: 50 €</li>
+    <li>💼 Consulta laboral: 30 €</li>
+    <li>🌙 Sesión personalizada: 45 €</li>
   </ul>
+</section>
 
-  <footer>
-    <p>© 2026 Consultas de Tarot - Todos los derechos reservados</p>
-  </footer>
+<section id="confianza-legal">
+  <h2>Confianza y confidencialidad</h2>
+  <p>
+    Todas las consultas son privadas y confidenciales.
+    El tarot es una herramienta de guía, no de imposición.
+  </p>
 
-  <!-- Partículas generadas dinámicamente -->
-  <script>
-    const colors = ["#fff", "#ffe4e1", "#fdf5e6", "#f0f8ff"];
-    for(let i=0; i<50; i++){
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      const size = Math.random() * 5 + 3;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      particle.style.background = colors[Math.floor(Math.random()*colors.length)];
-      particle.style.top = `${Math.random()*100}vh`;
-      particle.style.left = `${Math.random()*100}vw`;
-      particle.style.animationDuration = `${20 + Math.random()*20}s`;
-      document.body.appendChild(particle);
+  <h2>Aviso legal</h2>
+  <p>
+    Las consultas de tarot son orientativas y de entretenimiento.
+    No sustituyen asesoramiento médico, legal, financiero o psicológico.
+  </p>
+</section>
+
+<section id="cta-final">
+  <h2>¿Listo para tu consulta?</h2>
+  <p>
+    No esperes más para descubrir tu camino. Haz clic en WhatsApp y reserva tu sesión hoy mismo.
+  </p>
+  <a href="https://wa.me/673790307" class="boton">💬 Reservar ahora por WhatsApp</a>
+</section>
+
+<footer>
+  <p>© 2026 Consultas de Tarot - Todos los derechos reservados</p>
+  <p>Sígueme en <a href="https://instagram.com/tuusuario" target="_blank">Instagram</a></p>
+</footer>
+
+<!-- ======== JavaScript Tirada ======== -->
+<script>
+const cartas = [
+  { nombre: "El Loco", imagen: "https://i.imgur.com/XM0w4Uk.png", significado: "Nuevo comienzo, libertad, aventura" },
+  { nombre: "La Sacerdotisa", imagen: "https://i.imgur.com/dP0R5yH.png", significado: "Intuición, misterio, sabiduría" },
+  { nombre: "El Sol", imagen: "https://i.imgur.com/8k1J4Hj.png", significado: "Éxito, claridad, alegría" },
+  { nombre: "La Luna", imagen: "https://i.imgur.com/xkDRrQ1.png", significado: "Emociones, intuición, misterio" },
+  { nombre: "La Torre", imagen: "https://i.imgur.com/jkW7zLg.png", significado: "Cambio repentino, crisis, liberación" },
+  { nombre: "La Rueda de la Fortuna", imagen: "https://i.imgur.com/jrYtYZI.png", significado: "Ciclos, destino, oportunidad" },
+  { nombre: "El Emperador", imagen: "https://i.imgur.com/6x5kGQh.png", significado: "Estabilidad, control, autoridad" },
+  { nombre: "La Emperatriz", imagen: "https://i.imgur.com/4YBt1Rv.png", significado: "Abundancia, creatividad, fertilidad" }
+];
+
+let seleccionadas = [];
+
+const mazoDiv = document.getElementById("mazo");
+const seleccionDiv = document.getElementById("seleccionadas");
+
+// Crear mazo visual
+cartas.forEach((carta, index) => {
+  const div = document.createElement("div");
+  div.classList.add("carta");
+  div.innerHTML = `<div class="carta-inner">
+                      <div class="carta-front"></div>
+                      <div class="carta-back">${carta.nombre}</div>
+                   </div>`;
+  div.querySelector(".carta-front").style.backgroundImage = `url(${carta.imagen})`;
+
+  div.addEventListener("click", () => {
+    if (seleccionadas.length < 3 && !seleccionadas.includes(index)) {
+      seleccionadas.push(index);
+      const cartaClone = div.cloneNode(true);
+      cartaClone.classList.add("flipped");
+      seleccionDiv.appendChild(cartaClone);
     }
-  </script>
+  });
+
+  mazoDiv.appendChild(div);
+});
+
+// Mostrar significados
+function mostrarSignificados() {
+  if (seleccionadas.length !== 3) {
+    alert("Selecciona 3 cartas para ver los significados.");
+    return;
+  }
+
+  let texto = "Significados:\n";
+  seleccionadas.forEach(i => {
+    texto += `${cartas[i].nombre}: ${cartas[i].significado}\n`;
+  });
+
+  document.getElementById("significado").textContent = texto;
+}
+</script>
 
 </body>
 </html>
